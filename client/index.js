@@ -7,25 +7,10 @@ const select_table = document.getElementById("select-table");
 //console.log(select_table.value)
 
 select_table.addEventListener('click', function () {
-    var val = select_table.value;
-    var t_name
-    if (val == 1) {
-        console.log('Student Table');
-        t_name = 'student';
-    } else if (val == 2) {
-        console.log('Company Table');
-        t_name = 'company';
-    } else if (val == 3) {
-        console.log('Projects Table');
-        t_name = 'projects';
-    } else if (val == 4) {
-        console.log('Weekly Contest Table');
-        t_name = 'weekly_contests';
-    } else {
-        t_name = 'student';
-    } 
-
-    fetch('http://localhost:5000/showTable/' + t_name)
+    //const t_name = select_table.value;
+    //console.log(select_table, t_name)
+    
+    fetch('http://localhost:5000/showTable/' + select_table.value)
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']))
 });

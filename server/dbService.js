@@ -29,7 +29,8 @@ class DbService {
         try {
             console.log(tname)
             const response = await new Promise((resolve, reject) => {
-                const sql_query = "SELECT * FROM ?";
+                const sql_query = 'SELECT * FROM ?';
+                console.log(sql_query)
                 connection.query(sql_query, [tname], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results)
