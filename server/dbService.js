@@ -24,7 +24,39 @@ class DbService {
     static getDBServiceInstance() {
         return instance ? instance : new DbService();
     }
+    
+    async getTableData(tname) {
+        try {
+            console.log(tname)
+            const response = await new Promise((resolve, reject) => {
+                var sql_query
+                if (tname == 'student') {
+                    sql_query = 'SELECT * FROM student';
+                } else if (tname == 'company') {
+                    sql_query = 'SELECT * FROM company';
+                } else if (tname == 'projects') {
+                    sql_query = 'SELECT * FROM projects';
+                } else if (tname == 'weekly_contests') {
+                    sql_query = 'SELECT * FROM weekly_contests';
+                } else {
+                    //Do Nothing
+                }
+                
+                console.log(sql_query)
+                connection.query(sql_query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                }) ;
+            });
 
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    /*
     async getTableData(tname) {
         try {
             console.log(tname)
@@ -42,7 +74,7 @@ class DbService {
         } catch (error) {
             console.log(error)
         }
-    }
+    }*/
 }
 
 module.exports = DbService;

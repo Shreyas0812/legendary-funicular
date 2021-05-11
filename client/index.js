@@ -16,5 +16,5 @@ select_table.addEventListener('click', function () {
 });
 
 function loadHTMLTable(data) {
-    console.log(data);
+    console.log('Here',data);
 }
