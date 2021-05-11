@@ -59,3 +59,30 @@ body {
 #search-btn:focus {
     outline: none;
 }
+
+#select-table {
+    background-color: #c0c0c0;
+    width: auto;
+    color: black;
+    float: left;
+}
+
+option {
+    color: black;
+}
+
+#Add-record {
+    background-color: #2ebbca;
+    float: right;
+    border-radius: 25px;
+    margin: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+#Add-record:focus {
+    outline: none;
+}
