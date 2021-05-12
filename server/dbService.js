@@ -75,6 +75,30 @@ class DbService {
             console.log(error)
         }
     }*/
+
+    async insertStudentDate(Reg_no, Name, YOS, Skills, Achievements, Projects) {
+        try {
+            const New_Reg_no = await new Promise((resolve, reject) => {
+                const sql_query = "INSERT INTO student VALUES (?, ?, ?, ?, ?, ?);";
+                connection.query(sql_query, [Reg_no, Name, YOS, Skills, Achievements, Projects], (err, result) => {
+                    if(err) reject(new Error(err.message));
+                    resolve(result.Reg_no);
+                });
+            });
+
+            console.log(New_Reg_no);
+            return {
+                Reg_no: New_Reg_no,
+                Name: Name,
+                YOS: YOS,
+                Skills: Skills,
+                Achievements: Achievements,
+                Projects: Projects
+            };
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 module.exports = DbService;

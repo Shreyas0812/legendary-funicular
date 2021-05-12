@@ -120,6 +120,7 @@ function loadHTMLTable(data, t_name) {
     table_header.innerHTML = thHTML;
     add_btn_table.innerHTML = abHTML;
 
+    console.log('data: ', data)
     // Data
     const table_body = document.getElementById('main-table-body');
     let tbHTML = '';
@@ -141,6 +142,7 @@ function loadHTMLTable(data, t_name) {
             tbHTML += `<td>${projects}</td>`
             tbHTML += `<td><button class="delete-row-btn" data-id=${Reg_no}>Delete</button></td>`
             tbHTML += "</tr>"
+
         });
     } else if (t_name == 'company') {
         data.forEach(function({Company_ID, Company_name, CTC, Job_Role, Skill_set, Contests }) {
@@ -180,7 +182,7 @@ function loadHTMLTable(data, t_name) {
     } else {
         //Do Nothing
     }
-    
+    table_body.innerHTML = tbHTML;
 }
 
 const addBtn = document.querySelector('#add-record-btn');
@@ -190,18 +192,159 @@ addBtn.onclick = function() {
     
     t_name = select_table.value;
     if (t_name == 'student') {
-        
-        //add_btn_table.innerHTML = abHTML;
+        const Reg_no_input = document.querySelector('#input-reg-no');
+        const Reg_no = Reg_no_input.value || "";
+        Reg_no_input.value = "";
+        const Name_input = document.querySelector('#input-name');
+        const Name = Name_input.value || "";
+        Name_input.value = "";
+        const YOS_input = document.querySelector('#input-yos');
+        const YOS = YOS_input.value || "";
+        YOS_input.value = "";
+        const Skills_input = document.querySelector('#input-skills'); 
+        const Skills = Skills_input.value || "";
+        Skills_input.value = "";
+        const Achievements_input = document.querySelector('#input-achievements');
+        const Achievements = Achievements_input.value || "";
+        Achievements_input.value = "";
+        const Projects_input = document.querySelector('#input-projects');
+        const Projects = Projects_input.value || "";
+        Projects_input.value = "";
+
+        //sending to backend
+        fetch('http://localhost:5000/insertstudent', {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method:'POST',
+            body: JSON.stringify({
+                Reg_no: Reg_no,
+                Name: Name,
+                YOS: YOS,
+                Skills: Skills,
+                Achievements: Achievements,
+                Projects: Projects
+            })
+        })
+        .then (response => response.json())
+        .then (data => insertRowIntoTable(data['data'], t_name))
+        ;
     } else if (t_name == 'company') {
+        const Company_ID_input = document.querySelector('#input-company-id');
+        const Company_ID = Company_ID_input.value || "";
+        Company_ID_input.value = "";
+        const Company_name_input = document.querySelector('#input-company-name');
+        const Company_name = Company_name_input.value || "";
+        Company_name_input.value = "";
+        const CTC_input = document.querySelector('#input-ctc');
+        const CTC = CTC_input.value || "";
+        CTC_input.value = "";
+        const Job_Role_input = document.querySelector('#input-job-role');
+        const Job_Role = Job_Role_input.value || "";
+        Job_Role_input.value = "";
+        const Skill_set_input = document.querySelector('#input-skill-set');
+        const Skill_set = Skill_set_input.value || "";
+        Skill_set_input.value = "";
+        const Contest_name_input = document.querySelector('#input-contests');
+        const Contest_name = Contest_name_input.value || "";
+        Contest_name_input.value = "";
         
-        //add_btn_table.innerHTML = abHTML;
+        //sending to backend
+        fetch('http://localhost:5000/insert_company', {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method:'POST',
+            body: JSON.stringify({
+                Company_ID: Company_ID,
+                Company_name: Company_name,
+                CTC: CTC,
+                Job_Role: Job_Role,
+                Skill_set: Skill_set,
+                Contest_name: Contest_name
+            })
+        })
+        .then (response => response.json())
+        .then (data => insertRowIntoTable(data['data'], t_name))
+        ;
     } else if (t_name == 'projects') {
+        const Project_id_input = document.querySelector('#input-project-id');
+        const Project_id = Project_id_input.value || "";
+        Project_id_input.value = "";
+        const Project_title_input = document.querySelector('#input-project-title');
+        const Project_title = Project_title_input.value || "";
+        Project_title_input.value = "";
+        const Host_id_input = document.querySelector('#input-host-id');
+        const Host_id = Host_id_input.value || "";
+        Host_id_input.value = "";
+        const Host_name_input = document.querySelector('#input-host-name');
+        const Host_name = Host_name_input.value || "";
+        Host_name_input.value = "";
+        const Skill_set_input = document.querySelector('#input-skill-set');
+        const Skill_set = Skill_set_input.value || "";
+        Skill_set_input.value = "";
+        const Skill_set_required_input = document.querySelector('#input-skill-set-required');
+        const Skill_set_required = Skill_set_required_input.value || "";
+        Skill_set_required_input.value = "";
+        const Members_input = document.querySelector('#input-members');
+        const Members = Members_input.value || "";
+        Members_input.value = "";
         
-        //add_btn_table.innerHTML = abHTML;
+        //sending to backend
+        fetch('http://localhost:5000/insert_projects', {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method:'POST',
+            body: JSON.stringify({
+                Project_id: Project_id,
+                Project_title: Project_title,
+                Host_id: Host_id,
+                Host_name: Host_name,
+                Skill_set: Skill_set,
+                Skill_set_required: Skill_set_required,
+                Members: Members
+            })
+        })
+        .then (response => response.json())
+        .then (data => insertRowIntoTable(data['data'], t_name))
+        ;
     } else if (t_name == 'weekly_contests') {
+        const Contest_id_input = document.querySelector('#input-contest-id');
+        const Contest_id = Contest_id_input.value || "";
+        Contest_id_input.value = "";
+        const Contest_name_input = document.querySelector('#input-contest-name');
+        const Contest_name = Contest_name_input.value || "";
+        Contest_name_input.value;
+        const Host_Company_input = document.querySelector('#input-host-company');
+        const Host_Company = Host_Company_input.value || "";
+        Host_Company_input.value = "";
+        const Skills_Required_input = document.querySelector('#input-skills-required');
+        const Skills_Required = Skills_Required_input.value || "";
+        Skills_Required_input.value = "";
         
-        //add_btn_table.innerHTML = abHTML;
+        //sending to backend
+        fetch('http://localhost:5000/insert_weekly_contests', {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method:'POST',
+            body: JSON.stringify({
+                Contest_id: Contest_id,
+                Contest_name: Contest_name,
+                Host_Company: Host_Company,
+                Skills_Required: Skills_Required
+            })
+        })
+        .then (response => response.json())
+        .then (data => insertRowIntoTable(data['data'], t_name))
+        ;
     } else {
         //Do Nothing
     }
 }
+
+function insertRowIntoTable(data, t_name) {
+    console.log('Insert this: ', data, 'into', t_name);
+}
+//complete above function bas
