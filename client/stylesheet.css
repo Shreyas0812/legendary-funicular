@@ -71,7 +71,7 @@ option {
     color: black;
 }
 
-#Add-record {
+#add-record-btn {
     background-color: #2ebbca;
     float: right;
     border-radius: 25px;
@@ -83,10 +83,18 @@ option {
     padding-bottom: 3px;
 }
 
-#Add-record:focus {
+#add-record-btn:focus {
     outline: none;
 }
 
-#table {
+
+#table{
     margin: 50px auto;
 }
+
+#add-record-table {
+    table-layout: fixed;
+    margin: 50px auto;
+    border-radius: 25px;
+}
+
