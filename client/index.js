@@ -22,6 +22,11 @@ function loadHTMLTable(data, t_name) {
     
     let number_of_columns = 0;
     let thHTML = '';
+
+    const add_btn_table = document.querySelector('#add-record-table')
+    let abHTML = ""
+
+
     if (t_name == 'student') {
         thHTML =`
             <th>Reg_no</th>
@@ -33,6 +38,17 @@ function loadHTMLTable(data, t_name) {
             <th>Delete</th>
             `;
         number_of_columns = 6;
+        abHTML =`
+            <br>
+            <h6>Add New:</h6>
+            <tr>
+                <td><input placeholder="Reg_no" id="input-reg-no" type=></td>
+                <td><input placeholder="Name" id="input-name"></td>
+                <td><input placeholder="YOS" id="input-yos"></td>
+                <td><input placeholder="Skills" id="input-skills"></td>
+                <td><input placeholder="Achievements" id="input-achievements"></td>
+                <td><input placeholder="Projects" id="input-projects"></td>
+            </tr>`;
     } else if (t_name == 'company') {
         thHTML =`
             <th>Company_Id</th>
@@ -44,6 +60,17 @@ function loadHTMLTable(data, t_name) {
             <th>Delete</th>
             `;
         number_of_columns = 6;
+        abHTML =`
+            <br>
+            <h6>Add New:</h6>
+            <tr>
+                <td><input placeholder="Company_ID" id="input-company-id" type=></td>
+                <td><input placeholder="Company_name" id="input-company-name"></td>
+                <td><input placeholder="CTC" id="input-ctc"></td>
+                <td><input placeholder="Job_Role" id="input-job-role"></td>
+                <td><input placeholder="Skill_set" id="input-skill-set"></td>
+                <td><input placeholder="Contests" id="input-contests"></td>
+            </tr>`;
     } else if (t_name == 'projects') {
         thHTML =`
             <th>Project_id</th>
@@ -56,6 +83,18 @@ function loadHTMLTable(data, t_name) {
             <th>Delete</th>
             `;
         number_of_columns = 7;
+        abHTML =`
+            <br>
+            <h6>Add New:</h6>
+            <tr>
+                <td><input placeholder="Project_id" id="input-project-id" type=></td>
+                <td><input placeholder="Project_title" id="input-project-title"></td>
+                <td><input placeholder="Host_id" id="input-host-id"></td>
+                <td><input placeholder="Host_name" id="input-host-name"></td>
+                <td><input placeholder="Skill_set" id="input-skill-set"></td>
+                <td><input placeholder="Skill_set_required" id="input-skill-set-required"></td>
+                <td><input placeholder="Members" id="input-members"></td>
+            </tr>`
     } else if (t_name == 'weekly_contests') {
         thHTML =`
             <th>Contest_id</th>
@@ -65,11 +104,21 @@ function loadHTMLTable(data, t_name) {
             <th>Delete</th>
             `;
         number_of_columns = 4;
+        abHTML =`
+            <br>
+            <h6>Add New:</h6>
+            <tr>
+                <td><input placeholder="Contest_id" id="input-contest-id" type=></td>
+                <td><input placeholder="Contest_name" id="input-contest-name"></td>
+                <td><input placeholder="Host_Company" id="input-host-company"></td>
+                <td><input placeholder="Skills_Required" id="input-skills-required"></td>
+            </tr>`;
     } else {
         //Do Nothing
     }
     
     table_header.innerHTML = thHTML;
+    add_btn_table.innerHTML = abHTML;
 
     // Data
     const table_body = document.getElementById('main-table-body');
@@ -138,60 +187,20 @@ const addBtn = document.querySelector('#add-record-btn');
 
 addBtn.onclick = function() {
     console.log('In add record',select_table.value);
-    const add_btn_table = document.querySelector('#add-record-table')
-    let abHTML = ""
+    
     t_name = select_table.value;
     if (t_name == 'student') {
-        abHTML =`
-            <br>
-            <h6>Add New:</h6>
-            <tr>
-                <td><input placeholder="Reg_no" id="input-reg-no" type=></td>
-                <td><input placeholder="Name" id="input-name"></td>
-                <td><input placeholder="YOS" id="input-yos"></td>
-                <td><input placeholder="Skills" id="input-skills"></td>
-                <td><input placeholder="Achievements" id="input-achievements"></td>
-                <td><input placeholder="Projects" id="input-projects"></td>
-            </tr>`;
-        add_btn_table.innerHTML = abHTML;
+        
+        //add_btn_table.innerHTML = abHTML;
     } else if (t_name == 'company') {
-        abHTML =`
-            <br>
-            <h6>Add New:</h6>
-            <tr>
-                <td><input placeholder="Company_ID" id="input-company-id" type=></td>
-                <td><input placeholder="Company_name" id="input-company-name"></td>
-                <td><input placeholder="CTC" id="input-ctc"></td>
-                <td><input placeholder="Job_Role" id="input-job-role"></td>
-                <td><input placeholder="Skill_set" id="input-skill-set"></td>
-                <td><input placeholder="Contests" id="input-contests"></td>
-            </tr>`;
-        add_btn_table.innerHTML = abHTML;
+        
+        //add_btn_table.innerHTML = abHTML;
     } else if (t_name == 'projects') {
-        abHTML =`
-            <br>
-            <h6>Add New:</h6>
-            <tr>
-                <td><input placeholder="Project_id" id="input-project-id" type=></td>
-                <td><input placeholder="Project_title" id="input-project-title"></td>
-                <td><input placeholder="Host_id" id="input-host-id"></td>
-                <td><input placeholder="Host_name" id="input-host-name"></td>
-                <td><input placeholder="Skill_set" id="input-skill-set"></td>
-                <td><input placeholder="Skill_set_required" id="input-skill-set-required"></td>
-                <td><input placeholder="Members" id="input-members"></td>
-            </tr>`
-        add_btn_table.innerHTML = abHTML;
+        
+        //add_btn_table.innerHTML = abHTML;
     } else if (t_name == 'weekly_contests') {
-        abHTML =`
-            <br>
-            <h6>Add New:</h6>
-            <tr>
-                <td><input placeholder="Contest_id" id="input-contest-id" type=></td>
-                <td><input placeholder="Contest_name" id="input-contest-name"></td>
-                <td><input placeholder="Host_Company" id="input-host-company"></td>
-                <td><input placeholder="Skills_Required" id="input-skills-required"></td>
-            </tr>`;
-        add_btn_table.innerHTML = abHTML;
+        
+        //add_btn_table.innerHTML = abHTML;
     } else {
         //Do Nothing
     }
