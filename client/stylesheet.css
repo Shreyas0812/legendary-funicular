@@ -86,3 +86,7 @@ option {
 #Add-record:focus {
     outline: none;
 }
+
+#table {
+    margin: 50px auto;
+}
