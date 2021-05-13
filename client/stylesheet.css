@@ -71,7 +71,7 @@ option {
     color: black;
 }
 
-#add-record-btn {
+#add-record-btn, .delete-row-btn {
     background-color: #2ebbca;
     float: right;
     border-radius: 25px;
@@ -83,10 +83,9 @@ option {
     padding-bottom: 3px;
 }
 
-#add-record-btn:focus {
+#add-record-btn:focus, .delete-row-btn:focus {
     outline: none;
 }
-
 
 #table{
     margin: 50px auto;
@@ -98,3 +97,13 @@ option {
     border-radius: 25px;
 }
 
+input {
+    background-color: #4dffed;
+    width: 120%;
+    margin: 3px;
+    border-radius: 10%;
+}
+
+input:focus {
+    outline: none;
+}
