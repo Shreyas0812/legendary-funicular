@@ -40,7 +40,7 @@ app.post('/insertstudent', (request, response) => {
 
     const db = getDBServiceInstance();
 
-    const result = db.insertStudentDate(Reg_no, Name, YOS, Skills, Achievements, Projects);
+    const result = db.insertStudentData(Reg_no, Name, YOS, Skills, Achievements, Projects);
 
     result
     .then(data => response.json({ data: data }))
@@ -48,16 +48,62 @@ app.post('/insertstudent', (request, response) => {
 
 });
 
-app.post('/insert_company', (request, response) => {
-    
+app.post('/insertcompany', (request, response) => {
+    const { Company_ID } = request.body;
+    const { Company_name } = request.body;
+    const { CTC } = request.body;
+    const { Job_Role } = request.body;
+    const { Skill_set } = request.body;
+    const { Contest_name } = request.body;
+    //console.log(request.body, Reg_no);
+
+
+    const db = getDBServiceInstance();
+
+    const result = db.insertCompanyData(Company_ID, Company_name, CTC, Job_Role, Skill_set, Contest_name);
+
+    //console.log('Results: ', result)
+    result
+    .then(data => response.json({ data: data }))
+    .catch (err => console.log(err));
+
 });
 
-app.post('/insert_projects', (request, response) => {
-    
+app.post('/insertprojects', (request, response) => {
+    const { Project_id } = request.body;
+    const { Project_title } = request.body;
+    const { Host_id } = request.body;
+    const { Host_name } = request.body;
+    const { Skill_set } = request.body;
+    const { Skill_set_required } = request.body;
+    const { Members } = request.body;
+
+    const db = getDBServiceInstance();
+
+    const result = db.insertProjectsData(Project_id, Project_title, Host_id, Host_name, Skill_set, Skill_set_required, Members);
+
+    //console.log('Results: ', result)
+    result
+    .then(data => response.json({ data: data }))
+    .catch (err => console.log(err));
+
 });
 
-app.post('/insert_weekly_contests', (request, response) => {
-    
+app.post('/insertweeklycontests', (request, response) => {
+    const { Contest_id } = request.body;
+    const { Contest_name } = request.body;
+    const { Host_Company } = request.body;
+    const { Skills_Required } = request.body;
+
+    const db = getDBServiceInstance();
+
+    const result = db.insertWeeklyContestsData(Contest_id, Contest_name, Host_Company, Skills_Required);
+
+    //console.log('Results: ', result)
+    result
+    .then(data => response.json({ data: data }))
+    .catch (err => console.log(err));
+
 });
 
 //start local server

@@ -166,7 +166,7 @@ function loadHTMLTable(data, t_name) {
             tbHTML += `<td>${Skill_set}</td>`
             tbHTML += `<td>${Skill_set_required}</td>`
             tbHTML += `<td>${Members}</td>`
-            tbHTML += `<td><button class="delete-row-btn" data-id=${Reg_no}>Delete</button></td>`
+            tbHTML += `<td><button class="delete-row-btn" data-id=${Project_id}>Delete</button></td>`
             tbHTML += "</tr>"
         });
     } else if (t_name == 'weekly_contests') {
@@ -176,7 +176,7 @@ function loadHTMLTable(data, t_name) {
             tbHTML += `<td>${Contest_name}</td>`
             tbHTML += `<td>${Host_Company}</td>`
             tbHTML += `<td>${Skills_Required}</td>`
-            tbHTML += `<td><button class="delete-row-btn" data-id=${Reg_no}>Delete</button></td>`
+            tbHTML += `<td><button class="delete-row-btn" data-id=${Contest_id}>Delete</button></td>`
             tbHTML += "</tr>"
         });
     } else {
@@ -250,7 +250,7 @@ addBtn.onclick = function() {
         Contest_name_input.value = "";
         
         //sending to backend
-        fetch('http://localhost:5000/insert_company', {
+        fetch('http://localhost:5000/insertcompany', {
             headers: {
                 'Content-type': 'application/json'
             },
@@ -291,7 +291,7 @@ addBtn.onclick = function() {
         Members_input.value = "";
         
         //sending to backend
-        fetch('http://localhost:5000/insert_projects', {
+        fetch('http://localhost:5000/insertprojects', {
             headers: {
                 'Content-type': 'application/json'
             },
@@ -324,7 +324,7 @@ addBtn.onclick = function() {
         Skills_Required_input.value = "";
         
         //sending to backend
-        fetch('http://localhost:5000/insert_weekly_contests', {
+        fetch('http://localhost:5000/insertweeklycontests', {
             headers: {
                 'Content-type': 'application/json'
             },
@@ -346,5 +346,34 @@ addBtn.onclick = function() {
 
 function insertRowIntoTable(data, t_name) {
     console.log('Insert this: ', data, 'into', t_name);
+    const table_body = document.getElementById('main-table-body');
+
+    const isTableData = table_body.querySelector('.no-data');
+
+    let tbAddHTML = "<tr>";
+    let index = 0;
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            tbAddHTML += `<td>${data[key]}</td>`;
+            console.log('key',key, data[key])
+            
+            if (index == 0) {
+                primary_key = key;
+            }
+            index += 1
+        }
+    }
+
+    tbAddHTML += `<td><button class="delete-row-btn" data-id=${data[primary_key]}>Delete</button></td>`;
+    tbAddHTML += "</tr>";
+
+    console.log('Main Data and Primary Key: ', data, data[primary_key])    
+    //check
+    if (isTableData) {
+        table_body.innerHTML = tbAddHTML;
+    } else {
+        const newRow = table_body.insertRow();
+        newRow.innerHTML = tbAddHTML;
+    }
+    
 }
-//complete above function bas
