@@ -106,5 +106,23 @@ app.post('/insertweeklycontests', (request, response) => {
 
 });
 
-//start local server
+
+app.delete('/delete/:id/:t_name', (request, response) => {
+    //console.log('Parameter: ', request.params);
+
+    const { id } = request.params;
+    const { t_name } = request.params;
+    //console.log(id, t_name)
+    
+    const db = getDBServiceInstance();
+
+    const result = db.deleteRowById(id, t_name);
+
+    result
+    .then (data => response.json({ success: data }))
+    .catch (err => console.log(err));
+
+});
+
+
 app.listen(process.env.PORT, () => console.log('App is running'));

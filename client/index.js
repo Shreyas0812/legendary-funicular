@@ -377,3 +377,70 @@ function insertRowIntoTable(data, t_name) {
     }
     
 }
+
+document.querySelector('#main-table-body').addEventListener('click', function(event) {
+    console.log(event.target);
+
+    if (event.target.className === 'delete-row-btn') {
+        //console.log('HERE: ',event.target.dataset.id, select_table.value)
+        deleteRowById(event.target.dataset.id, select_table.value);
+    }
+})
+
+function deleteRowById(id, t_name) {
+    //console.log(id, t_name)
+    fetch('http://localhost:5000/delete/' + id + '/' + t_name, {
+        method: 'DELETE'
+    })
+    .then (response => response.json())
+    .then (data => {
+        if (data.success) {
+            location.reload();
+        }
+    })
+/*    
+    if (t_name == 'student') {
+        fetch('http://localhost:5000/deletestudent/' + id + '/' + t_name, {
+            method:'DELETE'
+        })
+        .then (response => response.json())
+        .then (data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    } else if (t_name == 'company') {
+        fetch('http://localhost:5000/deletecompany/' + id, {
+            method:'DELETE'
+        })
+        .then (response => response.json())
+        .then (data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    } else if (t_name == 'projects') {
+        fetch('http://localhost:5000/deleteprojects/' + id, {
+            method:'DELETE'
+        })
+        .then (response => response.json())
+        .then (data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    } else if (t_name == 'weekly_contests') {
+        fetch('http://localhost:5000/deleteweeklycontests/' + id, {
+            method:'DELETE'
+        })
+        .then (response => response.json())
+        .then (data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    } else {
+        //Do Nothing
+    }
+    */
+}

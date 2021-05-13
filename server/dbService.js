@@ -29,7 +29,7 @@ class DbService {
         try {
             console.log(tname)
             const response = await new Promise((resolve, reject) => {
-                var sql_query
+                var sql_query;
                 if (tname == 'student') {
                     sql_query = 'SELECT * FROM student';
                 } else if (tname == 'company') {
@@ -42,14 +42,14 @@ class DbService {
                     //Do Nothing
                 }
                 
-                console.log(sql_query)
+                //console.log(sql_query)
                 connection.query(sql_query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results)
                 }) ;
             });
 
-            console.log(response);
+            //console.log(response);
             return response;
         } catch (error) {
             console.log(error)
@@ -86,7 +86,7 @@ class DbService {
                 });
             });
 
-            console.log(New_Reg_no);
+            //console.log(New_Reg_no);
             return {
                 Reg_no: Reg_no,
                 Name: Name,
@@ -110,7 +110,7 @@ class DbService {
                 });
             });
 
-            console.log(New_company_table_val);
+            //console.log(New_company_table_val);
             return {
                 Company_ID:Company_ID,
                 Company_name: Company_name,
@@ -135,7 +135,7 @@ class DbService {
                 });
             });
 
-            console.log(New_projects_table_val);
+            //console.log(New_projects_table_val);
             return {
                 Project_id: Project_id,
                 Project_title: Project_title,
@@ -160,7 +160,7 @@ class DbService {
                 });
             });
 
-            console.log(New_weekly_contests_table_val);
+            //console.log(New_weekly_contests_table_val);
             return {
                 Contest_id: Contest_id,
                 Contest_name: Contest_name,
@@ -168,6 +168,34 @@ class DbService {
                 Skills_Required: Skills_Required
             };
         } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async deleteRowById(id, tname) {
+        try {   
+            const response = await new Promise((resolve, reject) => {
+                var sql_query
+                if (tname == 'student') {
+                    sql_query = 'DELETE FROM student where Reg_no = ?';
+                } else if (tname == 'company') {
+                    sql_query = 'DELETE FROM company where company_ID = ?';
+                } else if (tname == 'projects') {
+                    sql_query = 'DELETE FROM projects where Project_id = ?';
+                } else if (tname == 'weekly_contests') {
+                    sql_query = 'DELETE FROM weekly_contests where Contest_id = ?';
+                } else {
+                    //Do Nothing
+                }
+                connection.query(sql_query, [id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+
+            console.log(response);
+            return response === 1 ? true : false;
+        } catch (error) {
             console.log(error);
         }
     }
