@@ -124,5 +124,19 @@ app.delete('/delete/:id/:t_name', (request, response) => {
 
 });
 
+app.get('/search/:searchValue/:t_name', (request, response) => {
+    const {t_name} = request.params;
+    const {searchValue} = request.params;
+
+    console.log("Search here: ", t_name, searchValue)
+
+    const db = dbService.getDBServiceInstance();
+    const result = db.searchByValue(t_name, searchValue);
+
+    result
+    .then(data => response.json({ data: data }))
+    .catch(err => console.log(err));
+})
+
 
 app.listen(process.env.PORT, () => console.log('App is running'));

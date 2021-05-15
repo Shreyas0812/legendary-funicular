@@ -199,6 +199,62 @@ class DbService {
             console.log(error);
         }
     }
+
+    async searchByValue(tname, searchValue){
+        try {
+            const response = await new Promise((resolve, rejecct) => {
+                var sql_query;
+                if (tname == 'student') {
+                    sql_query = `SELECT * FROM student 
+                        WHERE Reg_no LIKE '%${searchValue}%' OR
+                            Name LIKE '%${searchValue}%' OR
+                            YOS LIKE '%${searchValue}%' OR
+                            Skills LIKE '%${searchValue}%' OR
+                            Achievements LIKE '%${searchValue}%' OR
+                            Projects LIKE '%${searchValue}%' 
+                        ;`;
+                } else if (tname == 'company') {
+                    sql_query = `SELECT * FROM company
+                        WHERE Company_ID LIKE '%${searchValue}%' OR
+                            Company_name LIKE '%${searchValue}%' OR
+                            CTC LIKE '%${searchValue}%' OR
+                            Job_Role LIKE '%${searchValue}%' OR
+                            Skill_set LIKE '%${searchValue}%' OR
+                            Contests LIKE '%${searchValue}%'
+                        ;`;
+                } else if (tname == 'projects') {
+                    sql_query = `SELECT * FROM projects
+                        WHERE Project_id LIKE '%${searchValue}%' OR
+                            Project_title LIKE '%${searchValue}%' OR
+                            Host_id LIKE '%${searchValue}%' OR
+                            Host_name LIKE '%${searchValue}%' OR
+                            Skill_set LIKE '%${searchValue}%' OR
+                            Skill_set_required LIKE '%${searchValue}%' OR
+                            Members LIKE '%${searchValue}%'
+                        ;`;
+                } else if (tname == 'weekly_contests') {
+                    sql_query = `SELECT * FROM weekly_contests
+                        WHERE Contest_id LIKE '%${searchValue}%' OR
+                            Contest_name LIKE '%${searchValue}%' OR
+                            Host_Company LIKE '%${searchValue}%' OR
+                            Skills_Required LIKE '%${searchValue}%' OR
+                        ;`;
+                } else {
+                    //Do Nothing
+                }
+                console.log(sql_query)
+                connection.query(sql_query, (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = DbService;

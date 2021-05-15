@@ -444,3 +444,15 @@ function deleteRowById(id, t_name) {
     }
     */
 }
+
+function searchFunction() {
+    const select_table = document.getElementById("select-table");
+    t_name = select_table.value;
+    const searchValue = document.querySelector('#search-input').value;
+
+    //console.log(searchValue);
+
+    fetch('http://localhost:5000/search/' + searchValue + '/' + t_name)
+    .then (response => response.json())
+    .then (data => loadHTMLTable(data['data'], t_name));
+}
