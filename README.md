@@ -1,6 +1,6 @@
 # legendary-funicular
 
-Abstract
+#### Abstract
 
 Social networking for Students is primarily limited to websites
 such as LinkedIn and college based contacts. This allows students to search for like-minded people only in a limited circle. In contrast, using our application would enable students to expand their boundaries and reach students from various parts of the world.
