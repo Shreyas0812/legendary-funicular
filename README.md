@@ -13,4 +13,3 @@ The project highlights the database management aspect of the aforementioned appl
 
 #### Entity Relationship Diagram
 ![E-R Diagram](https://github.com/Shreyas0812/legendary-funicular/blob/main/DBMS%20Project%20ER%20Diagram%20Legendary%20Funicular.png)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
