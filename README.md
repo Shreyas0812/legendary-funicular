@@ -10,3 +10,7 @@ This is a social networking website designed for business professionals. Interac
 It allows you to share work-related information with other users and keep an online list of professional contacts. 
 
 The project highlights the database management aspect of the aforementioned application.
+
+#### Entity Relationship Diagram
+
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
