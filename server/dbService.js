@@ -100,11 +100,11 @@ class DbService {
         }
     }
 
-    async insertCompanyData(Company_ID, Company_name, CTC, Job_Role, Skill_set, Contest_name) {
+    async insertCompanyData(Company_ID, Company_name, Job_Role, Skill_set, Contest_name) {
         try {
             const New_company_table_val = await new Promise((resolve, reject) => {
-                const sql_query = "INSERT INTO company VALUES (?, ?, ?, ?, ?, ?);";
-                connection.query(sql_query, [Company_ID, Company_name, CTC, Job_Role, Skill_set, Contest_name], (err, result) => {
+                const sql_query = "INSERT INTO company VALUES (?, ?, ?, ?, ?);";
+                connection.query(sql_query, [Company_ID, Company_name, Job_Role, Skill_set, Contest_name], (err, result) => {
                     if(err) reject(new Error(err.message));
                     resolve(result.Company_ID);
                 });
@@ -114,7 +114,6 @@ class DbService {
             return {
                 Company_ID:Company_ID,
                 Company_name: Company_name,
-                CTC: CTC,
                 Job_Role: Job_Role,
                 Skill_set: Skill_set,
                 Contest_name: Contest_name
@@ -217,7 +216,6 @@ class DbService {
                     sql_query = `SELECT * FROM company
                         WHERE Company_ID LIKE '%${searchValue}%' OR
                             Company_name LIKE '%${searchValue}%' OR
-                            CTC LIKE '%${searchValue}%' OR
                             Job_Role LIKE '%${searchValue}%' OR
                             Skill_set LIKE '%${searchValue}%' OR
                             Contests LIKE '%${searchValue}%'

@@ -51,7 +51,6 @@ app.post('/insertstudent', (request, response) => {
 app.post('/insertcompany', (request, response) => {
     const { Company_ID } = request.body;
     const { Company_name } = request.body;
-    const { CTC } = request.body;
     const { Job_Role } = request.body;
     const { Skill_set } = request.body;
     const { Contest_name } = request.body;
@@ -60,7 +59,7 @@ app.post('/insertcompany', (request, response) => {
 
     const db = getDBServiceInstance();
 
-    const result = db.insertCompanyData(Company_ID, Company_name, CTC, Job_Role, Skill_set, Contest_name);
+    const result = db.insertCompanyData(Company_ID, Company_name, Job_Role, Skill_set, Contest_name);
 
     //console.log('Results: ', result)
     result
