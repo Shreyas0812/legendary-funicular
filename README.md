@@ -13,3 +13,19 @@ The project highlights the database management aspect of the aforementioned appl
 
 #### Entity Relationship Diagram
 ![E-R Diagram](https://github.com/Shreyas0812/legendary-funicular/blob/main/DBMS%20Project%20ER%20Diagram%20Legendary%20Funicular.png)
+
+#### To Run this DBMS Project:
+1. Clone this Repository
+2. Ensure that node-js and mysql are already installed
+3. Make the necessary tables in sql. Schema for the same is given in the Project_report attatched.
+5. Make a .env file in the service with the following specification :
+> PORT=5000 <br />
+> USER=[sql_user] <br />
+> PASSWORD=[sql-password] <br />
+> DATABASE=[name of the database] <br />
+> DB_PORT=3306 <br />
+> HOST=localhost <br />
+6. In the Powershell/cmd, run: 
+> cd server <br />
+> npm start <br />
+7. Open the Project on localhost:5000 on your browser
