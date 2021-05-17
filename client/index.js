@@ -53,7 +53,6 @@ function loadHTMLTable(data, t_name) {
         thHTML =`
             <th>Company_Id</th>
             <th>Company_name</th>
-            <th>CTC</th>
             <th>Job_Role</th>
             <th>Skill_set</th>
             <th>Contests</th>
@@ -66,7 +65,6 @@ function loadHTMLTable(data, t_name) {
             <tr>
                 <td><input placeholder="Company_ID" id="input-company-id" type=></td>
                 <td><input placeholder="Company_name" id="input-company-name"></td>
-                <td><input placeholder="CTC" id="input-ctc"></td>
                 <td><input placeholder="Job_Role" id="input-job-role"></td>
                 <td><input placeholder="Skill_set" id="input-skill-set"></td>
                 <td><input placeholder="Contests" id="input-contests"></td>
@@ -132,24 +130,23 @@ function loadHTMLTable(data, t_name) {
 
 
     if (t_name == 'student') {
-        data.forEach(function({Reg_no, Name, YOS, Skills, Achievements, projects }) {
+        data.forEach(function({Reg_no, Name, YOS, Skills, Achievements, Projects }) {
             tbHTML += "<tr>"
             tbHTML += `<td>${Reg_no}</td>`
             tbHTML += `<td>${Name}</td>`
             tbHTML += `<td>${YOS}</td>`
             tbHTML += `<td>${Skills}</td>`
             tbHTML += `<td>${Achievements}</td>`
-            tbHTML += `<td>${projects}</td>`
+            tbHTML += `<td>${Projects}</td>`
             tbHTML += `<td><button class="delete-row-btn" data-id=${Reg_no}>Delete</button></td>`
             tbHTML += "</tr>"
 
         });
     } else if (t_name == 'company') {
-        data.forEach(function({Company_ID, Company_name, CTC, Job_Role, Skill_set, Contests }) {
+        data.forEach(function({Company_ID, Company_name, Job_Role, Skill_set, Contests }) {
             tbHTML += "<tr>"
             tbHTML += `<td>${Company_ID}</td>`
             tbHTML += `<td>${Company_name}</td>`
-            tbHTML += `<td>${CTC}</td>`
             tbHTML += `<td>${Job_Role}</td>`
             tbHTML += `<td>${Skill_set}</td>`
             tbHTML += `<td>${Contests}</td>`
@@ -236,9 +233,6 @@ addBtn.onclick = function() {
         const Company_name_input = document.querySelector('#input-company-name');
         const Company_name = Company_name_input.value || "";
         Company_name_input.value = "";
-        const CTC_input = document.querySelector('#input-ctc');
-        const CTC = CTC_input.value || "";
-        CTC_input.value = "";
         const Job_Role_input = document.querySelector('#input-job-role');
         const Job_Role = Job_Role_input.value || "";
         Job_Role_input.value = "";
@@ -258,7 +252,6 @@ addBtn.onclick = function() {
             body: JSON.stringify({
                 Company_ID: Company_ID,
                 Company_name: Company_name,
-                CTC: CTC,
                 Job_Role: Job_Role,
                 Skill_set: Skill_set,
                 Contest_name: Contest_name
@@ -315,7 +308,7 @@ addBtn.onclick = function() {
         Contest_id_input.value = "";
         const Contest_name_input = document.querySelector('#input-contest-name');
         const Contest_name = Contest_name_input.value || "";
-        Contest_name_input.value;
+        Contest_name_input.value = "";
         const Host_Company_input = document.querySelector('#input-host-company');
         const Host_Company = Host_Company_input.value || "";
         Host_Company_input.value = "";
