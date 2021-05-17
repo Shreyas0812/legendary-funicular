@@ -27,6 +27,7 @@ The project highlights the database management aspect of the aforementioned appl
 > HOST=localhost <br />
 6. In the Powershell/cmd, run: 
 > cd server <br />
+> npm init <br />
 > npm install express <br />
 > npm install mysql <br />
 > npm install cors <br />
