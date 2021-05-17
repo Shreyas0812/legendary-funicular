@@ -27,10 +27,10 @@ The project highlights the database management aspect of the aforementioned appl
 > HOST=localhost <br />
 6. In the Powershell/cmd, run: 
 > cd server <br />
-> npm install express
-> npm install mysql
-> npm install cors
-> npm install dotnenv
-> npm install nodemon --save-dev
+> npm install express <br />
+> npm install mysql <br />
+> npm install cors <br />
+> npm install dotnenv <br />
+> npm install nodemon --save-dev <br />
 > npm start <br />
 8. Open the Project on localhost:5000 on your browser
